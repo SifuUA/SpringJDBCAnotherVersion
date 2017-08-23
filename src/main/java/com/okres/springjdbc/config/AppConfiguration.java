@@ -24,7 +24,14 @@ public class AppConfiguration {
     @Bean(name = "dataSource")
     public DataSource getDataSource(){
         BasicDataSource dataSource = new BasicDataSource();
-        dataSource.setDriverClassName(env.getProperty());
+        dataSource.setDriverClassName(env.getProperty("ds.database-driver"));
+        dataSource.setUrl(env.getProperty("ds.url"));
+        dataSource.setUsername(env.getProperty("ds.username"));
+        dataSource.setPassword(env.getProperty("ds.password"));
+
+        System.out.println("## DataSource" + dataSource);
+
+        return dataSource;
     }
 
 }
